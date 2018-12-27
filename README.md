@@ -1,0 +1,3 @@
+These are my solutions to advent of code 2017.
+The code is a mess and probably only mostly works.
+I am going to try to clean it up over the next few months...
