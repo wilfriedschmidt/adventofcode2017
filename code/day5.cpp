@@ -10,18 +10,11 @@ void day5()
   std::vector<std::string> lines = split(buf, '\n');
 
   std::vector<int> jumps;
-  for(int i=0;i<lines.size();i++)
+  for(int i=0;i<lines.size();++i)
   {
     jumps.push_back( atoi(lines[i].c_str()) );
     printf("%i\n", jumps[i]);
   }
-
-  /*jumps.clear();
-  jumps.push_back(0);
-  jumps.push_back(3);
-  jumps.push_back(0);
-  jumps.push_back(1);
-  jumps.push_back(-3);*/
 
   int64_t count=0;
   int index=0;
@@ -29,11 +22,15 @@ void day5()
   {
     int next = jumps[index];
     if(next>=3)
+    {
       jumps[index]-=1;
+    }
     else
+    {
       jumps[index]+=1;
-    index+=next;
+    }
 
+    index+=next;
     count++;
   }
 

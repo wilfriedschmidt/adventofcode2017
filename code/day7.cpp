@@ -21,7 +21,7 @@ void day7()
 
   std::vector<Program> programs;
 
-  for(int i=0;i<lines.size();i++)
+  for(int i=0;i<lines.size();++i)
   {
     // ensyb (18) -> usvzfi, uxxtnll, phrkfo, vntjo
     std::vector<std::string> parts = split(lines[i], ' ');
@@ -32,26 +32,29 @@ void day7()
     newprog.newweight = 0;
     newprog.parent = nullptr;
 
-    for(int j=3;j<parts.size()-1;j++)
+    for(int j=3;j<parts.size()-1;++j)
     {
       std::string subname = parts[j].substr(0,parts[j].size()-1);
       newprog.refs.push_back(subname);
     }
+
     if(parts.size() > 2)
+    {
       newprog.refs.push_back(parts[parts.size()-1]);
+    }
 
     programs.push_back(newprog);
   }
 
   std::map<std::string, int> pmap;
-  for(int i=0;i<programs.size();i++)
+  for(int i=0;i<programs.size();++i)
   {
     pmap.insert( std::pair<std::string,int>(programs[i].name, i) );
   }
 
-  for(int i=0;i<programs.size();i++)
+  for(int i=0;i<programs.size();++i)
   {
-    for(int j=0;j<programs[i].refs.size();j++)
+    for(int j=0;j<programs[i].refs.size();++j)
     {
       Program *pref = &programs[ pmap[programs[i].refs[j]] ];
       programs[i].prefs.push_back( pref );
@@ -59,7 +62,7 @@ void day7()
     }
   }
 
-  for(int i=0;i<programs.size();i++)
+  for(int i=0;i<programs.size();++i)
   {
     if(programs[i].parent==nullptr)
     {
@@ -74,10 +77,12 @@ void day7()
     if(programs[index].newweight==0)
     {
       bool childrenready=true;
-      for(int j=0;j<programs[index].prefs.size();j++)
+      for(int j=0;j<programs[index].prefs.size();++j)
       {
         if(programs[index].prefs[j]->newweight==0)
+        {
           childrenready=false;
+        }
       }
 
       if(childrenready)
@@ -88,7 +93,7 @@ void day7()
         }
         else
         {
-          for(int j=0;j<programs[index].prefs.size();j++)
+          for(int j=0;j<programs[index].prefs.size();++j)
           {
             programs[index].newweight += programs[index].prefs[j]->newweight;
           }
@@ -99,10 +104,12 @@ void day7()
         // check children
         if(programs[index].prefs.size()>0)
         {
-          for(int j=0;j<programs[index].prefs.size()-1;j++)
+          for(int j=0;j<programs[index].prefs.size()-1;++j)
           {
             if(programs[index].prefs[j]->newweight != programs[index].prefs[j+1]->newweight)
+            {
               printf("bad weights for %s\n", programs[index].name.c_str());
+            }
           }
         }
       }
@@ -112,23 +119,14 @@ void day7()
     index = index % programs.size();
   }
 
-  for(int i=0;i<programs.size();i++)
+  for(int i=0;i<programs.size();++i)
   {
     printf("%s %i %i ", programs[i].name.c_str(), programs[i].weight, programs[i].newweight);
 
-    for(int j=0;j<programs[i].prefs.size();j++)
+    for(int j=0;j<programs[i].prefs.size();++j)
     {
       printf("%s ", programs[i].prefs[j]->name.c_str());
     }
     printf("\n");
   }
-
-  /*
-  for(int i=0;i<programs.size();i++)
-  {
-    if(programs[i].weight!=programs[i].newweight)
-    {
-      printf("bad weights for %s\n", programs[i].name.c_str());
-    }
-  }*/
 }

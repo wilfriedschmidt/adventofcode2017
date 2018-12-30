@@ -67,7 +67,7 @@ int getsteps(HexNode node)
       break;
     }
 
-    for(int i=0;i<6;i++)
+    for(int i=0;i<6;++i)
     {
       nodes[i] = node;
     }
@@ -96,37 +96,13 @@ void day11()
   std::vector<char> buf = readfile("../data/day11/input.txt");
   std::vector<std::string> dirs = split(buf, ',');
 
-  /*dirs.clear();
-  dirs.push_back("ne");
-  dirs.push_back("ne");
-  dirs.push_back("ne");
-
-  dirs.clear();
-  dirs.push_back("ne");
-  dirs.push_back("ne");
-  dirs.push_back("sw");
-  dirs.push_back("sw");
-
-  dirs.clear();
-  dirs.push_back("ne");
-  dirs.push_back("ne");
-  dirs.push_back("s");
-  dirs.push_back("s");
-
- /* dirs.clear();
-  dirs.push_back("se");
-  dirs.push_back("sw");
-  dirs.push_back("se");
-  dirs.push_back("sw");
-  dirs.push_back("sw");*/
-
   HexNode node;
   node.x=0;
   node.y=0;
   node.z=0;
 
   int maxsteps=0;
-  for(int i=0;i<dirs.size();i++)
+  for(int i=0;i<dirs.size();++i)
   {
     node.move(dirs[i]);
 
@@ -137,7 +113,6 @@ void day11()
     }
   }
 
-  //printf("%i %i %i\n", node.x, node.y, node.z);
   int steps = getsteps(node);
 
   printf("dist %i %i\n", steps, maxsteps);

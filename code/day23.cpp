@@ -55,17 +55,14 @@ int runcontext_2(const std::vector<OpCode> &codes, Context &context)
       }
     }
 
-    //if((context.ic==11) || (context.ic==15))
+    printf("%i ", context.ic);
+    op.print();
+    printf("\n");
+    for(auto i=context.registers.begin(); i!=context.registers.end(); i++)
     {
-      printf("%i ", context.ic);
-      op.print();
-      printf("\n");
-      for(auto i=context.registers.begin(); i!=context.registers.end(); i++)
-      {
-        printf("%c:%" PRIi64 " ", i->first, i->second);
-      }
-      printf("\n");
+      printf("%c:%" PRIi64 " ", i->first, i->second);
     }
+    printf("\n");
 
     context.ic+=jumpdist;
   }
@@ -82,7 +79,7 @@ void day23()
   std::vector<OpCode> codes;
   std::map<char,int64_t> registers;
 
-  for(int i=0;i<parts.size();i++)
+  for(int i=0;i<parts.size();++i)
   {
     std::vector<std::string> subparts = split(parts[i],' ');
     OpCode op;
@@ -129,7 +126,7 @@ void day23()
     codes.push_back(op);
   }
 
-  for(int i=0;i<codes.size();i++)
+  for(int i=0;i<codes.size();++i)
   {
     OpCode& op = codes[i];
     printf("%i ",i);
@@ -137,7 +134,7 @@ void day23()
     printf("\n");
   }
 
-  for(auto i=registers.begin(); i!=registers.end(); i++)
+  for(auto i=registers.begin(); i!=registers.end(); ++i)
   {
     printf("%c %i\n", i->first, i->second);
   }
@@ -145,7 +142,6 @@ void day23()
   Context context0;
   context0.ic=0;
   context0.registers = registers;
-  //context0.registers['p'] = 0;
   context0.numsent=0;
 
   context0.registers['a'] = 1;
@@ -160,7 +156,7 @@ void day23()
   }
 
 
-  for(auto i=registers.begin(); i!=registers.end(); i++)
+  for(auto i=registers.begin(); i!=registers.end(); ++i)
   {
     printf("%c %i\n", i->first, i->second);
   }
@@ -183,71 +179,13 @@ void day23_2()
         break;
       }
     }
-    /*
-    for(int j=2;j<i;j++)
+
+    if(notp) 
     {
-      for(int k=j;k<i;k++)
-      {
-        if(j*k==i)
-        {
-          notp=true;
-          break;
-        }
-      }
-
-      if(notp) break;
-    }*/
-
-    if(notp) notprimes++;
+      notprimes++;
+    }
     printf("%i\n", i);
   }
 
   printf("num not primes %i\n", notprimes);
-
-  /*
-   *
-   *   int64_t a,b,c,d,e,f,g,h;
-
-  b=105700;
-  c=122700;
-  h=0;
-  while((b-c)!=0)
-  {
-    d=2;
-    e=2;
-    f=1;
-
-  inner1:
-
-
-    printf("%i %i %i %i %i %i\n",b,c,d,e,f,h);
-
-    if(d*e == b)
-    {
-      f=0;
-      goto notprime;
-    }
-
-    e++;
-    if(e!=b) goto inner1;
-
-    d++;
-    if(d!=b)
-    {
-      e=2;
-      goto inner1;
-    }
-
-    notprime:
-    if(f==0) h++;
-
-    //printf("%i %i %i %i %i %i\n",b,c,d,e,f,h);
-
-    b-=17;
-  }
-
-  // number of prime bs between 105700 and 122700
-
-  printf("%i\n", h);
-  */
 }

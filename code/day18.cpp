@@ -15,7 +15,7 @@ void day18()
   std::vector<OpCode> codes;
   std::map<char,int64_t> registers;
 
-  for(int i=0;i<parts.size();i++)
+  for(int i=0;i<parts.size();++i)
   {
     std::vector<std::string> subparts = split(parts[i],' ');
     OpCode op;
@@ -62,18 +62,30 @@ void day18()
     codes.push_back(op);
   }
 
-  for(int i=0;i<codes.size();i++)
+  for(int i=0;i<codes.size();++i)
   {
     OpCode& op = codes[i];
     printf("%i: %s ", i, op.command.c_str());
-    if(op.regleft!=' ') printf("%c ", op.regleft);
-    else printf("%i ", op.opleft);
+    if(op.regleft!=' ') 
+    {
+      printf("%c ", op.regleft);
+    }
+    else 
+    {
+      printf("%i ", op.opleft);
+    }
 
-    if(op.regright!=' ') printf("%c\n", op.regright);
-    else printf("%i\n", op.opright);
+    if(op.regright!=' ') 
+    {
+      printf("%c\n", op.regright);
+    }
+    else 
+    {
+      printf("%i\n", op.opright);
+    }
   }
 
-  for(auto i=registers.begin(); i!=registers.end(); i++)
+  for(auto i=registers.begin(); i!=registers.end(); ++i)
   {
     printf("%c %i\n", i->first, i->second);
   }
@@ -139,13 +151,6 @@ void day18()
       }
     }
 
-    /*printf("%i %i ", ic,sound);
-    for(auto i=registers.begin(); i!=registers.end(); i++)
-    {
-      printf("%c:%" PRIi64 "\t\t\t\t", i->first, i->second);
-    }
-    printf("\n");*/
-
     if(!jumping)
     {
       ic++;
@@ -203,18 +208,15 @@ int runcontext(const std::vector<OpCode> &codes, Context &context)
     }
     else if(op.command=="rcv")
     {
-      //if(context.registers[op.regleft]!=0)
+      if(context.in->empty())
       {
-        if(context.in->empty())
-        {
-          // yield
-          return 1;
-        }
-        else
-        {
-          context.registers[op.regleft] = (*context.in)[0];
-          context.in->erase(context.in->begin());
-        }
+        // yield
+        return 1;
+      }
+      else
+      {
+        context.registers[op.regleft] = (*context.in)[0];
+        context.in->erase(context.in->begin());
       }
     }
     else if(op.command=="jgz")
@@ -238,7 +240,7 @@ int runcontext(const std::vector<OpCode> &codes, Context &context)
     }
 
     printf("%i ", context.ic);
-    for(auto i=context.registers.begin(); i!=context.registers.end(); i++)
+    for(auto i=context.registers.begin(); i!=context.registers.end(); ++i)
     {
       printf("%c:%" PRIi64 "\t\t\t\t", i->first, i->second);
     }
@@ -267,7 +269,7 @@ void day18_2()
   std::vector<OpCode> codes;
   std::map<char,int64_t> registers;
 
-  for(int i=0;i<parts.size();i++)
+  for(int i=0;i<parts.size();++i)
   {
     std::vector<std::string> subparts = split(parts[i],' ');
     OpCode op;
@@ -314,18 +316,30 @@ void day18_2()
     codes.push_back(op);
   }
 
-  for(int i=0;i<codes.size();i++)
+  for(int i=0;i<codes.size();++i)
   {
     OpCode& op = codes[i];
     printf("%i: %s ", i, op.command.c_str());
-    if(op.regleft!=' ') printf("%c ", op.regleft);
-    else printf("%i ", op.opleft);
+    if(op.regleft!=' ') 
+    {
+      printf("%c ", op.regleft);
+    }
+    else 
+    {
+      printf("%i ", op.opleft);
+    }
 
-    if(op.regright!=' ') printf("%c\n", op.regright);
-    else printf("%i\n", op.opright);
+    if(op.regright!=' ') 
+    {
+      printf("%c\n", op.regright);
+    }
+    else 
+    {
+      printf("%i\n", op.opright);
+    }
   }
 
-  for(auto i=registers.begin(); i!=registers.end(); i++)
+  for(auto i=registers.begin(); i!=registers.end(); ++i)
   {
     printf("%c %i\n", i->first, i->second);
   }
@@ -364,8 +378,6 @@ void day18_2()
       printf("deadlock\n");
       break;
     }
-
-    //printf("%i %i\n", context0.numsent, context1.numsent);
   }
 
   printf("numsent %i %i\n", context0.numsent, context1.numsent);

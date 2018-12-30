@@ -14,9 +14,9 @@ void day17()
   int count=1;
   int step = 376;
 
-  for(int j=0;j<50000000;j++)
+  for(int j=0;j<50000000;++j)
   {
-    for(int k=0;k<step;k++)
+    for(int k=0;k<step;++k)
     {
       if(index==buf.end())
       {
@@ -29,10 +29,12 @@ void day17()
     count++;
 
     if((count%100000)==0)
+    {
       printf("%i\n", count);
+    }
   }
 
-  for(auto i = buf.begin();i!=buf.end();i++)
+  for(auto i = buf.begin();i!=buf.end();++i)
   {
     if(*i==0)
     {
@@ -40,10 +42,4 @@ void day17()
       printf("%i ", *i);
     }
   }
-
-  /*for(auto i = buf.begin();i!=buf.end();i++)
-  {
-    printf("%i ", *i);
-  }
-  printf("\n");*/
 }

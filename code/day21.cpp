@@ -7,42 +7,6 @@
 
 void day21()
 {
-
-  //printf("%s\n", img.tostr().c_str());
-
-  /*
-  img.crop(0,0,2).print();
-  img.crop(2,0,2).print();
-  img.crop(0,2,2).print();
-  img.crop(2,2,2).print();
-  */
-
-  /*
-  img = img.rotate();
-  img.print();
-
-  img = img.rotate();
-  img.print();
-
-  img = img.rotate();
-  img.print();
-
-  img = img.rotate();
-  img.print();
-
-  img = img.flipv();
-  img.print();
-
-  img = img.flipv();
-  img.print();
-
-  img = img.fliph();
-  img.print();
-
-  img = img.fliph();
-  img.print();*/
-
-
   printf("DAY 21\n");
   std::vector<char> input = readfile("../data/day21/input.txt");
   std::vector<std::string> parts = split(input, '\n');
@@ -52,14 +16,14 @@ void day21()
   img.print();
 
   std::map<std::string,std::string> xform;
-  for(int i=0;i<parts.size();i++)
+  for(int i=0;i<parts.size();++i)
   {
     std::vector<std::string> subparts = split(parts[i],' ');
     xform.insert(std::pair<std::string,std::string>(subparts[0],subparts[2]));
   }
 
   int iterations = 18;
-  for(int i=0;i<iterations;i++)
+  for(int i=0;i<iterations;++i)
   {
     if(img.size%2==0)
     {
@@ -91,8 +55,6 @@ void day21()
           bool transformed=false;
           for(int l=0;l<12;l++)
           {
-            //printf("checking %s\n", totest[l].tostr().c_str());
-
             auto f = xform.find(totest[l].tostr());
             if(f!=xform.end())
             {
@@ -174,8 +136,6 @@ void day21()
       }
       img = nextimg;
     }
-
-    //img.print();
   }
 
   printf("%i\n", img.numon());

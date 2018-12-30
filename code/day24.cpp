@@ -15,13 +15,15 @@ struct Part
 void recurseparts(std::vector<std::vector<Part*>> &finallists, std::vector<Part*> partlist, Part* part)
 {
   bool recursed=false;
-  for(size_t i=0;i<part->out.size();i++)
+  for(size_t i=0;i<part->out.size();++i)
   {
     bool alreadyused=false;
-    for(size_t j=0;j<partlist.size();j++)
+    for(size_t j=0;j<partlist.size();++j)
     {
       if(partlist[j]->id==part->out[i]->id)
+      {
         alreadyused=true;
+      }
     }
 
     if(!alreadyused)
@@ -36,11 +38,6 @@ void recurseparts(std::vector<std::vector<Part*>> &finallists, std::vector<Part*
   if(!recursed)
   {
     finallists.push_back(partlist);
-    /*for(size_t i=0;i<partlist.size();i++)
-    {
-      printf("%i/%i ", partlist[i]->ports[0], partlist[i]->ports[1]);
-    }
-    printf("\n");*/
   }
 }
 
@@ -70,7 +67,7 @@ void day24()
 
   std::vector<Part> parts;
 
-  for(size_t i=0;i<lines.size();i++)
+  for(size_t i=0;i<lines.size();++i)
   {
     std::vector<std::string> ports = split(lines[i],'/');
 
@@ -84,16 +81,16 @@ void day24()
     parts.push_back(part);
   }
 
-  for(size_t i=0;i<parts.size();i++)
+  for(size_t i=0;i<parts.size();++i)
   {
     printf("%i/%i\n", parts[i].ports[0],parts[i].ports[1]);
   }
 
   std::vector<Part*> startparts;
 
-  for(size_t i=0;i<parts.size();i++)
+  for(size_t i=0;i<parts.size();++i)
   {
-    for(size_t j=0;j<parts.size();j++)
+    for(size_t j=0;j<parts.size();++j)
     {
       if( parts[i].ports[1]==parts[j].ports[0] )
       {
@@ -109,7 +106,7 @@ void day24()
   }
 
   std::vector<std::vector<Part*>> finallists;
-  for(size_t i=0;i<startparts.size();i++)
+  for(size_t i=0;i<startparts.size();++i)
   {
     std::vector<Part*> temp;
     temp.push_back(startparts[i]);
@@ -118,10 +115,10 @@ void day24()
 
   std::vector<BridgeStats> stats;
 
-  for(size_t i=0;i<finallists.size();i++)
+  for(size_t i=0;i<finallists.size();++i)
   {
     int strength=0;
-    for(size_t j=0;j<finallists[i].size();j++)
+    for(size_t j=0;j<finallists[i].size();++j)
     {
       strength+=finallists[i][j]->ports[0]+finallists[i][j]->ports[1];
     }
@@ -135,16 +132,8 @@ void day24()
 
   std::sort(stats.begin(), stats.end());
 
-  for(int i=0;i<5;i++)
+  for(int i=0;i<5;++i)
   {
     printf("length %i, strength %i\n", stats[stats.size()-(1+i)].length, stats[stats.size()-(1+i)].strength);
   }
-
-  /*
-  printf("strongest: %i", stats.);
-  for(size_t i=0;i<finallists[maxindex].size();i++)
-  {
-    printf("%i/%i ", finallists[maxindex][i]->ports[0], finallists[maxindex][i]->ports[1]);
-  }
-  printf("\n");*/
 }

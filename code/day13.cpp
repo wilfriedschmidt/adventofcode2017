@@ -8,18 +8,21 @@ void day13()
   std::vector<std::string> lines = split(buf, '\n');
 
   int maxindex=0;
-  for(int i=0;i<lines.size();i++)
+  for(int i=0;i<lines.size();++i)
   {
     std::vector<std::string> parts = split(lines[i], ' ');
     int index = atoi(parts[0].c_str());
-    if(index > maxindex) maxindex = index;
+    if(index > maxindex) 
+    {
+      maxindex = index;
+    }
   }
 
   std::vector<int> scanners(maxindex+1,0);
   std::vector<int> indexes(maxindex+1,0);
   std::vector<int> dirs(maxindex+1,1);
 
-  for(int i=0;i<lines.size();i++)
+  for(int i=0;i<lines.size();++i)
   {
     std::vector<std::string> parts = split(lines[i], ' ');
     int index = atoi(parts[0].c_str());
@@ -34,11 +37,10 @@ void day13()
   while(true)
   {
     severities[0] = -1;
-    for(int j=0;j<scanners.size();j++)
+    for(int j=0;j<scanners.size();++j)
     {
       if(indexes[j]==0 && scanners[j]>0)
       {
-        //printf(" collision %i %i\n", j, j * scanners[j]);
         if(severities[j]==-1)
         {
           severities[j]=0;
@@ -57,13 +59,6 @@ void day13()
 
       indexes[j]+=dirs[j];
     }
-
-    /*for(int k=0;k<scanners.size();k++)
-    {
-      printf("%i,  ", severities[k]);
-    }
-    printf("\n");*/
-
 
     if(severities[maxindex]==-1 && count>scanners.size())
     {

@@ -13,9 +13,7 @@ void gridset(int x, int y, int dim, int64_t value, std::vector<int64_t> &grid)
     printf("ERROR tried to write to %i %i\n", x,y);
 
   if(value>312051)
-  {
     printf("next value %i\n", value);
-  }
 
   grid[y*dim+x] = value;
 }
@@ -44,7 +42,7 @@ void day3()
   int ringsize=1;
   int index=1;
 
-  for(int i=0;i<1024;i++)
+  for(int i=0;i<1024;++i)
   {
     int llc = index - ringwidth+1;
     int tlc = llc - ringwidth+1;
@@ -75,7 +73,7 @@ void day3()
   std::vector<int64_t> grid;
 
   grid.resize(gridsize*gridsize);
-  for(int i=0;i<gridsize*gridsize;i++)
+  for(int i=0;i<gridsize*gridsize;++i)
   {
     grid[i] = 0;
   }
@@ -99,26 +97,26 @@ void day3()
 
     if(index>1)
     {
-      for(int j=0;j<ringwidth-1;j++)
+      for(int j=0;j<ringwidth-1;++j)
       {
         gridset(x,y,gridsize, gridsum(x,y,gridsize,grid), grid);
         y--;
       }
 
       y++;
-      for(int j=0;j<ringwidth-1;j++)
+      for(int j=0;j<ringwidth-1;++j)
       {
         gridset(x,y,gridsize, gridsum(x,y,gridsize,grid), grid);
         x--;
       }
 
-      for(int j=0;j<ringwidth-1;j++)
+      for(int j=0;j<ringwidth-1;++j)
       {
         gridset(x,y,gridsize, gridsum(x,y,gridsize,grid), grid);
         y++;
       }
 
-      for(int j=0;j<ringwidth;j++)
+      for(int j=0;j<ringwidth;++j)
       {
         gridset(x,y,gridsize, gridsum(x,y,gridsize,grid), grid);
         x++;
@@ -129,14 +127,4 @@ void day3()
     ringsize = ringwidth*4 - 4;
     index+=ringsize;
   }
-
-
-  /*for(int i=0;i<gridsize;i++)
-  {
-    for(int j=0;j<gridsize;j++)
-    {
-      printf("%i\t",grid[i*gridsize+j]);
-    }
-    printf("\n");
-  }*/
 }

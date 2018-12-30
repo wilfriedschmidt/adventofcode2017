@@ -14,7 +14,7 @@ void day15()
 
   int count=0;
 
-  for(int i=0;i<iterations;i++)
+  for(int i=0;i<iterations;++i)
   {
     A = A*16807 % 2147483647;
     B = B*48271 % 2147483647;
@@ -23,9 +23,6 @@ void day15()
     {
       count++;
     }
-
-    //printf("%" PRIu64 "\n", A);
-    //printf("%" PRIu64 "\n\n", B);
 
     if(i%100000==0)
     {
@@ -44,13 +41,10 @@ void day15_2()
   uint64_t A=516;
   uint64_t B=190;
 
-  //uint64_t A=65;
-  //uint64_t B=8921;
-
   int count=0;
   int iterations=5000000;
 
-  for(int i=0;i<iterations;i++)
+  for(int i=0;i<iterations;++i)
   {
     while(true)
     {
@@ -74,9 +68,6 @@ void day15_2()
     {
       count++;
     }
-
-    //printf("%" PRIu64 "\n", A);
-    //printf("%" PRIu64 "\n\n", B);
 
     if(i%100000==0)
     {

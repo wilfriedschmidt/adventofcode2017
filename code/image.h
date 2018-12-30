@@ -28,7 +28,7 @@ struct Image
 
   void print() const
   {
-    for(int i=0;i<size;i++)
+    for(int i=0;i<size;++i)
     {
       char buf[256];
       memcpy(buf,values.data()+i*size,size);
@@ -40,9 +40,9 @@ struct Image
 
   void print(int x,int y) const
   {
-    for(int i=0;i<size;i++)
+    for(int i=0;i<size;++i)
     {
-      for(int j=0;j<size;j++)
+      for(int j=0;j<size;++j)
       {
         if(i==y && j==x)
         {
@@ -62,7 +62,7 @@ struct Image
   {
     std::string str;
 
-    for(int i=0;i<size;i++)
+    for(int i=0;i<size;++i)
     {
       char buf[256];
       memcpy(buf, values.data()+i*size,size);
@@ -70,7 +70,9 @@ struct Image
       str+=buf;
 
       if(i!=size-1)
+      {
         str+="/";
+      }
     }
 
     return str;
@@ -81,9 +83,9 @@ struct Image
     Image img;
     img.init(s);
 
-    for(int i=0;i<s;i++)
+    for(int i=0;i<s;++i)
     {
-      for(int j=0;j<s;j++)
+      for(int j=0;j<s;++j)
       {
         img.values[ i*s+j ] = values[ (i+y)*size + j+x ];
       }
@@ -95,9 +97,9 @@ struct Image
   void copy(int x, int y, const Image &subimg)
   {
     int s = subimg.size;
-    for(int i=0;i<s;i++)
+    for(int i=0;i<s;++i)
     {
-      for(int j=0;j<s;j++)
+      for(int j=0;j<s;++j)
       {
         values[ (i+y)*size + j+x ] = subimg.values[ (i*s) + j ];
       }
@@ -107,9 +109,12 @@ struct Image
   int numon() const
   {
     int count=0;
-    for(int i=0;i<values.size();i++)
+    for(int i=0;i<values.size();++i)
     {
-      if(values[i]=='#') count++;
+      if(values[i]=='#')
+      {
+        count++;
+      }
     }
 
     return count;
@@ -120,9 +125,9 @@ struct Image
     Image img;
     img.init(size);
 
-    for(int i=0;i<size;i++)
+    for(int i=0;i<size;++i)
     {
-      for(int j=0;j<size;j++)
+      for(int j=0;j<size;++j)
       {
         img.values[ ((size - j)-1)*size + i ] = values[ i*size + j ];
       }
@@ -137,9 +142,9 @@ struct Image
     Image img;
     img.init(size);
 
-    for(int i=0;i<size;i++)
+    for(int i=0;i<size;++i)
     {
-      for(int j=0;j<size;j++)
+      for(int j=0;j<size;++j)
       {
         img.values[ i*size + ((size - j)-1) ] = values[ i*size + j ];
       }
@@ -154,9 +159,9 @@ struct Image
     Image img;
     img.init(size);
 
-    for(int i=0;i<size;i++)
+    for(int i=0;i<size;++i)
     {
-      for(int j=0;j<size;j++)
+      for(int j=0;j<size;++j)
       {
         img.values[ ((size - i) -1)*size + j ] = values[ i*size + j ];
       }

@@ -13,7 +13,7 @@ void day25()
 
   int iterations=12459852;
 
-  for(int i=0;i<iterations;i++)
+  for(int i=0;i<iterations;++i)
   {
     auto j=tape.find(cursor);
     if(j==tape.end())
@@ -21,42 +21,9 @@ void day25()
       tape.insert(std::pair<int,int>(cursor,0));
     }
 
-    //printf("\n");
-
-    /*if(state==0)
-    {
-      if(tape[cursor]==0)
-      {
-        tape[cursor]=1;
-        cursor++;
-        state=1;
-      }
-      else
-      {
-        tape[cursor]=0;
-        cursor--;
-        state=1;
-      }
-    }
-    else
-    {
-      if(tape[cursor]==0)
-      {
-        tape[cursor]=1;
-        cursor--;
-        state=0;
-      }
-      else
-      {
-        tape[cursor]=1;
-        cursor++;
-        state=0;
-      }
-    }*/
-
     switch(state)
     {
-    case 0:
+      case 0:
         if(tape[cursor]==0)
         {
           tape[cursor]=1;
@@ -71,7 +38,7 @@ void day25()
         }
       break;
 
-    case 1:
+      case 1:
         if(tape[cursor]==0)
         {
           tape[cursor]=1;
@@ -85,7 +52,8 @@ void day25()
           state=5;
         }
       break;
-    case 2:
+
+      case 2:
         if(tape[cursor]==0)
         {
           tape[cursor]=1;
@@ -99,7 +67,8 @@ void day25()
           state=1;
         }
       break;
-    case 3:
+
+      case 3:
         if(tape[cursor]==0)
         {
           tape[cursor]=1;
@@ -113,7 +82,8 @@ void day25()
           state=2;
         }
       break;
-    case 4:
+ 
+      case 4:
         if(tape[cursor]==0)
         {
           tape[cursor]=1;
@@ -127,7 +97,8 @@ void day25()
           state=3;
         }
       break;
-    case 5:
+
+      case 5:
         if(tape[cursor]==0)
         {
           tape[cursor]=1;
@@ -143,34 +114,31 @@ void day25()
       break;
     }
 
-   /* j=tape.find(cursor);
-    if(j==tape.end())
+    if(cursor<mincursor) 
     {
-      tape.insert(std::pair<int,int>(cursor,0));
-    }*/
-
-    if(cursor<mincursor) mincursor=cursor;
-    if(cursor>maxcursor) maxcursor=cursor;
-
-    /*for(int i=mincursor;i<=maxcursor;i++)
+      mincursor=cursor;
+    }
+    if(cursor>maxcursor) 
     {
-      if(i==cursor)
-        printf("[%i] ", tape[i]);
-      else
-        printf(" %i  ", tape[i]);
-    }*/
+      maxcursor=cursor;
+    }
 
-    if(i%100000==0) printf("%i\n", i);
+    if(i%100000==0) 
+    {
+      printf("%i\n", i);
+    }
   }
 
 
   printf("\n");
   int onecount=0;
-  for(int i=mincursor;i<=maxcursor;i++)
+  for(int i=mincursor;i<=maxcursor;++i)
   {
-    //printf(" %i  ", tape[i]);
-    if(tape[i]) onecount++;
+    if(tape[i]) 
+    {
+      onecount++;
+    }
   }
-  printf("checksum %i\n", onecount);
 
+  printf("checksum %i\n", onecount);
 }

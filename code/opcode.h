@@ -12,11 +12,23 @@ struct OpCode
   void print()
   {
     printf("%s ", command.c_str());
-    if(regleft!=' ') printf("%c ", regleft);
-    else printf("%i ", opleft);
+    if(regleft!=' ')
+    {
+      printf("%c ", regleft);
+    }
+    else
+    {
+      printf("%i ", opleft);
+    }
 
-    if(regright!=' ') printf("%c", regright);
-    else printf("%i", opright);
+    if(regright!=' ')
+    {
+      printf("%c", regright);
+    }
+    else
+    {
+      printf("%i", opright);
+    }
   }
 };
 

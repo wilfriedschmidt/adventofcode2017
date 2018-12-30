@@ -13,36 +13,39 @@ void day22()
 
   Image img;
   img.init(parts.size());
-  for(int i=0;i<parts.size();i++)
+  for(int i=0;i<parts.size();++i)
   {
-    for(int j=0;j<parts[i].size();j++)
+    for(int j=0;j<parts[i].size();++j)
     {
       img.values[i*img.size+j] = parts[i][j];
     }
   }
 
-
   int x=img.size/2;
   int y=img.size/2;
   int dir=0; // 0 up, 1 right, 2 down, 3 left
 
-  //img.print(x,y);
-
   int numinfections=0;
   int iterations=10000;
-  for(int i=0;i<iterations;i++)
+  for(int i=0;i<iterations;++i)
   {
     // turn
     if(img.values[y*img.size+x]=='#')
     {
       dir+=1;
-      if(dir>3) dir=0;
+      if(dir>3) 
+      {
+        dir=0;
+      }
       img.values[y*img.size+x]='.';
     }
     else
     {
       dir-=1;
-      if(dir<0) dir = 3;
+      if(dir<0) 
+      {
+        dir = 3;
+      }
       img.values[y*img.size+x]='#';
       numinfections++;
     }
@@ -65,11 +68,8 @@ void day22()
       x+=1;
       y+=1;
     }
-
-    //img.print(x,y);
   }
 
-  //img.print();
   printf("numinfections %i", numinfections);
 }
 
@@ -83,9 +83,9 @@ void day22_2()
   SparseGrid img;
   int x,y;
   y = parts.size();
-  for(int i=0;i<parts.size();i++)
+  for(int i=0;i<parts.size();++i)
   {
-    for(int j=0;j<parts[i].size();j++)
+    for(int j=0;j<parts[i].size();++j)
     {
       img.set(j,i, parts[i][j]);
     }
@@ -98,21 +98,27 @@ void day22_2()
 
   int numinfections=0;
   int iterations=10000000;
-  for(int i=0;i<iterations;i++)
+  for(int i=0;i<iterations;++i)
   {
     // turn
     if(img.get(x,y)=='#')
     {
       // turn right
       dir+=1;
-      if(dir>3) dir=0;
+      if(dir>3) 
+      {
+        dir=0;
+      }
       img.set(x,y,'F');
     }
     else if(img.get(x,y)=='.')
     {
       // turn left
       dir-=1;
-      if(dir<0) dir = 3;
+      if(dir<0) 
+      {
+        dir = 3;
+      }
       img.set(x,y,'W');
     }
     else if(img.get(x,y)=='W')
@@ -142,24 +148,11 @@ void day22_2()
       case 3: x--; break;
     }
 
-    if(i%10000==0) printf("%i\n",i);
-  }
-
-  /*for(int i=0;i<9;i++)
-  {
-    for(int j=0;j<9;j++)
+    if(i%10000==0) 
     {
-      if((i-3)==y && (j-3)==x)
-      {
-        printf("[%c]", img.get(j-3,i-3));
-      }
-      else
-      {
-        printf(" %c ", img.get(j-3,i-3));
-      }
+      printf("%i\n",i);
     }
-    printf("\n\n");
-  }*/
+  }
 
   printf("%i %i %i\n",x,y,dir);
   printf("numinfections %i\n", numinfections);

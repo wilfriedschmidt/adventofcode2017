@@ -12,9 +12,9 @@ void day19()
 
   int x,y;
   SparseGrid grid;
-  for(int i=0;i<lines.size();i++)
+  for(int i=0;i<lines.size();++i)
   {
-    for(int j=0;j<lines[i].size();j++)
+    for(int j=0;j<lines[i].size();++j)
     {
       if(i==0 && lines[i][j]=='|')
       {

@@ -10,17 +10,11 @@ void day6()
   std::vector<std::vector<int>> previous;
 
   std::vector<int> banks;
-  for(int i=0;i<parts.size();i++)
+  for(int i=0;i<parts.size();++i)
   {
     banks.push_back( atoi(parts[i].c_str()) );
     printf("%i ", banks[i]);
   }
-
-  /*banks.clear();
-  banks.push_back(0);
-  banks.push_back(2);
-  banks.push_back(7);
-  banks.push_back(0);*/
 
   previous.push_back(banks);
 
@@ -30,7 +24,7 @@ void day6()
   {
     int max=0;
     int maxindex = 0;
-    for(int i=0;i<banks.size();i++)
+    for(int i=0;i<banks.size();++i)
     {
       if(banks[i]>max)
       {
@@ -40,12 +34,12 @@ void day6()
     }
 
     banks[maxindex]=0;
-    for(int i=0;i<max;i++)
+    for(int i=0;i<max;++i)
     {
       banks[ (maxindex+i+1) % banks.size() ]+=1;
     }
 
-    for(int i=0;i<previous.size();i++)
+    for(int i=0;i<previous.size();++i)
     {
       if(containerequals(banks,previous[i]))
       {
@@ -56,7 +50,9 @@ void day6()
     }
 
     if(!cycle)
+    {
       previous.push_back(banks);
+    }
   }
 
   printf("cycle found %i %i\n", previous.size(), previous.size() - count);

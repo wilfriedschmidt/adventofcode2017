@@ -8,20 +8,20 @@ std::vector<int> knothash(const std::vector<int> &sizes)
   std::vector<int> knots;
   int knotssize = 256;
   knots.resize(knotssize);
-  for(int i=0;i<knotssize;i++)
+  for(int i=0;i<knotssize;++i)
   {
     knots[i] = i;
   }
 
   int index=0;
   int skipsize = 0;
-  for(int k=0;k<64;k++)
+  for(int k=0;k<64;++k)
   {
-    for(int i=0;i<sizes.size();i++)
+    for(int i=0;i<sizes.size();++i)
     {
       int reverselength = sizes[i];
 
-      for(int j=0;j<reverselength/2;j++)
+      for(int j=0;j<reverselength/2;++j)
       {
         int temp = knots[ (index+j)%knotssize ];
         knots[ (index+j)%knotssize ] = knots[ (index + ((reverselength-j)-1))%knotssize ];
@@ -37,10 +37,10 @@ std::vector<int> knothash(const std::vector<int> &sizes)
   }
 
   std::vector<int> dense;
-  for(int i=0;i<16;i++)
+  for(int i=0;i<16;++i)
   {
     int value=0;
-    for(int j=0;j<16;j++)
+    for(int j=0;j<16;++j)
     {
       value^=knots[i*16+j];
     }
@@ -57,15 +57,14 @@ void day14()
   std::vector<std::vector<int>> grid;
 
   int used=0;
-  for(int i=0;i<128;i++)
+  for(int i=0;i<128;++i)
   {
     char buf[256];
 
     sprintf(buf,"vbqugkhl-%i", i);
-    //sprintf(buf,"flqrgnkx-%i", i);
 
     std::vector<int> sizes;
-    for(int j=0;j<strlen(buf);j++)
+    for(int j=0;j<strlen(buf);++j)
     {
       sizes.push_back( static_cast<int>(buf[j]) );
     }
@@ -95,14 +94,13 @@ void day14()
 
   printf("%i\n", used);
 
-
-  for(int i=0;i<4096;i++)
+  for(int i=0;i<4096;++i)
   {
     printf("attempting %i\n", i);
     bool started = false;
-    for(int y=0;y<128;y++)
+    for(int y=0;y<128;++y)
     {
-      for(int x=0;x<128;x++)
+      for(int x=0;x<128;++x)
       {
         if(!started && grid[y][x]==-1)
         {
@@ -122,9 +120,9 @@ void day14()
     while(true)
     {
       bool added = false;
-      for(int y=0;y<128;y++)
+      for(int y=0;y<128;++y)
       {
-        for(int x=0;x<128;x++)
+        for(int x=0;x<128;++x)
         {
           if(grid[y][x]==-1)
           {
@@ -152,7 +150,10 @@ void day14()
         }
       }
 
-      if(!added) break;
+      if(!added) 
+      {
+        break;
+      }
     }
   }
 }

@@ -20,7 +20,7 @@ void day4()
 
   int total=0;
   int invalidcount=0;
-  for(int i=0;i<lines.size();i++)
+  for(int i=0;i<lines.size();++i)
   {
     std::vector<std::string> parts = split( lines[i], ' ' );
 
@@ -29,9 +29,9 @@ void day4()
       total++;
 
       bool valid = true;
-      for(int j=0;j<parts.size();j++)
+      for(int j=0;j<parts.size();++j)
       {
-        for(int k=j+1;k<parts.size();k++)
+        for(int k=j+1;k<parts.size();++k)
         {
           if(containerequals( parts[j],parts[k] ))
           {
@@ -51,16 +51,16 @@ void day4()
   printf("%i\n", total - invalidcount);
 
   int invalidcount2=0;
-  for(int i=0;i<lines.size();i++)
+  for(int i=0;i<lines.size();++i)
   {
     std::vector<std::string> parts = split( lines[i], ' ' );
 
     if(parts.size()>0)
     {
       bool valid = true;
-      for(int j=0;j<parts.size();j++)
+      for(int j=0;j<parts.size();++j)
       {
-        for(int k=j+1;k<parts.size();k++)
+        for(int k=j+1;k<parts.size();++k)
         {
           if(containerisanagram( parts[j],parts[k] ))
           {

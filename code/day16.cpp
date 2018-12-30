@@ -21,11 +21,10 @@ void day16()
   std::vector<std::string> parts = split(input, ',');
 
   char buf[17] = "abcdefghijklmnop";
-  //char buf[16] = "abcde";
   int numdancers = strlen(buf);
 
   std::vector<DanceMove> moves;
-  for(int i=0;i<parts.size();i++)
+  for(int i=0;i<parts.size();++i)
   {
     DanceMove move;
     if(parts[i][0]=='s')
@@ -61,7 +60,7 @@ void day16()
 
   std::map<std::string,std::string> startend;
 
-  for(int k=0;k<iterations;k++)
+  for(int k=0;k<iterations;++k)
   {
     std::string start = buf;
 
@@ -73,7 +72,7 @@ void day16()
     }
     else
     {
-      for(int i=0;i<moves.size();i++)
+      for(int i=0;i<moves.size();++i)
       {
         DanceMove& move = moves[i];
 
@@ -97,10 +96,14 @@ void day16()
           for(int j=0;j<16;j++)
           {
             if(buf[j]==move.leftname)
+            {
               left = j;
+            }
 
             if(buf[j]==move.rightname)
+            {
               right = j;
+            }
           }
 
           char temp = buf[left];

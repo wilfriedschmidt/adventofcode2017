@@ -16,7 +16,7 @@ std::string tohex(const T &ctr)
 std::string str;
 char* hexmap = "0123456789abcdef";
 
-  for(int i=0;i<ctr.size();i++)
+  for(int i=0;i<ctr.size();++i)
   {
     str+=hexmap[ (ctr[i] >> 4) & 0x0f ];
     str+=hexmap[ ctr[i] & 0x0f ];
@@ -32,9 +32,9 @@ std::string tobinary(const T &ctr)
 std::string str;
 char* binmap = "01";
 
-  for(int i=0;i<ctr.size();i++)
+  for(int i=0;i<ctr.size();++i)
   {
-    for(int j=7;j>=0;j--)
+    for(int j=7;j>=0;--j)
     {
       str += binmap[ ctr[i]>>j & 0x01 ];
     }
@@ -50,7 +50,7 @@ std::vector<std::string> split(const T &str, char splitchar)
   char partbuf[1024];
   int columnindex=0;
 
-  for(int i=0;i<str.size();i++)
+  for(int i=0;i<str.size();++i)
   {
     if(str[i]==splitchar)
     {
@@ -66,7 +66,9 @@ std::vector<std::string> split(const T &str, char splitchar)
       partbuf[columnindex]=0;
 
       if(columnindex>=1024)
+      {
         printf("ERROR overflow");
+      }
     }
   }
 
@@ -87,7 +89,7 @@ bool containerequals(const T &str1, const T &str2)
     return false;
   }
 
-  for(int i=0; i < str1.size(); i++)
+  for(int i=0; i < str1.size(); ++i)
   {
     if(str1[i]!=str2[i])
     {

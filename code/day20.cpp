@@ -36,7 +36,7 @@ void day20()
   std::vector<std::string> lines = split(input, '\n');
 
   std::vector<Particle> particles;
-  for(int i=0;i<lines.size();i++)
+  for(int i=0;i<lines.size();++i)
   {
     std::vector<std::string> parts = split(lines[i],' ');
 
@@ -62,18 +62,18 @@ void day20()
     particles.push_back(p);
   }
 
-  for(int i=0;i<particles.size();i++)
+  for(int i=0;i<particles.size();++i)
   {
     Particle p = particles[i];
     printf("p=<%i,%i,%i>, v=<%i,%i,%i>, a=<%i,%i,%i>\n", p.x,p.y,p.z, p.vx,p.vy,p.vz, p.ax,p.ay,p.az);
   }
 
   int iterations = 4096;
-  for(int i=0;i<iterations;i++)
+  for(int i=0;i<iterations;++i)
   {
     std::map<std::string,int> collisions;
 
-    for(int j=0;j<particles.size();j++)
+    for(int j=0;j<particles.size();++j)
     {
       Particle &p=particles[j];
 
@@ -109,7 +109,7 @@ void day20()
   }
 
   int alivecount=0;
-  for(int j=0;j<particles.size();j++)
+  for(int j=0;j<particles.size();++j)
   {
     if(!particles[j].dead) alivecount++;
   }

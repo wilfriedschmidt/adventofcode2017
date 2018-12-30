@@ -9,7 +9,7 @@ struct Node
   void print()
   {
     printf("{");
-    for(int i=0;i<children.size();i++)
+    for(int i=0;i<children.size();++i)
     {
       children[i]->print();
       printf(",");
@@ -20,7 +20,7 @@ struct Node
   void doscore(int s)
   {
     score = s;
-    for(int i=0;i<children.size();i++)
+    for(int i=0;i<children.size();++i)
     {
       children[i]->doscore(score+1);
     }
@@ -29,7 +29,7 @@ struct Node
   int countscore()
   {
     int sum=score;
-    for(int i=0;i<children.size();i++)
+    for(int i=0;i<children.size();++i)
     {
       sum+=children[i]->countscore();
     }
@@ -70,13 +70,11 @@ void day9()
   printf("DAY 9\n");
   std::vector<char> buf = readfile("../data/day9/input.txt");
 
-  // preprocess
-
   std::vector<char> preprocessed;
 
   int garbagecount=0;
   bool ingarbage = false;
-  for(int i=0;i<buf.size();i++)
+  for(int i=0;i<buf.size();++i)
   {
     if(buf[i]=='!')
     {

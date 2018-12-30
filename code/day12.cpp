@@ -15,7 +15,7 @@ void visitpipenodes(PipeNode *node, int id)
   if(node->visited==-1)
   {
     node->visited = id;
-    for(int i=0;i<node->connections.size();i++)
+    for(int i=0;i<node->connections.size();++i)
     {
       visitpipenodes(node->connections[i],id);
     }
@@ -34,7 +34,7 @@ void day12()
 
   std::vector<PipeNode> nodes;
 
-  for(int i=0;i<lines.size();i++)
+  for(int i=0;i<lines.size();++i)
   {
     std::vector<std::string> parts = split(lines[i], ' ');
 
@@ -46,7 +46,7 @@ void day12()
       printf("ERROR index mismatch");
     }
 
-    for(int j=2;j<parts.size();j++)
+    for(int j=2;j<parts.size();++j)
     {
       node.connectionids.push_back( atoi(parts[j].c_str()) );
     }
@@ -54,9 +54,9 @@ void day12()
     nodes.push_back(node);
   }
 
-  for(int i=0;i<nodes.size();i++)
+  for(int i=0;i<nodes.size();++i)
   {
-    for(int j=0;j<nodes[i].connectionids.size();j++)
+    for(int j=0;j<nodes[i].connectionids.size();++j)
     {
       int k=nodes[i].connectionids[j];
       nodes[i].connections.push_back( &nodes[k] );
@@ -65,7 +65,7 @@ void day12()
 
   int count=0;
 
-  for(int i=0;i<nodes.size();i++)
+  for(int i=0;i<nodes.size();++i)
   {
     if(nodes[i].visited==-1)
     {
