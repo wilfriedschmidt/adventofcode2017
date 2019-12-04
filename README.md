@@ -1,8 +1,9 @@
 These are my solutions to advent of code 2017.
+
 https://adventofcode.com/2017
 
 
-Disclaimer:
+#### Disclaimer:
 
 These implementations should not be considered for any production application.
 They are:
@@ -11,7 +12,7 @@ They are:
 - are not likely to be in a working state
 
 
-Buiding and Running:
+#### Buiding and Running:
 
 Open adventofcode2017.pro with QT Creator.
 Build and run from QT Creator.
