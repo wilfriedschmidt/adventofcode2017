@@ -1,3 +1,17 @@
 These are my solutions to advent of code 2017.
-The code is a mess and probably only mostly works.
-I am going to try to clean it up over the next few months...
+https://adventofcode.com/2017
+
+
+Disclaimer:
+
+These implementations should not be considered for any production application.
+They are:
+- super hacky
+- only reflect my ability to get a decent score on the aoc leaderboard
+- are not likely to be in a working state
+
+
+Buiding and Running:
+
+Open adventofcode2017.pro with QT Creator.
+Build and run from QT Creator.
